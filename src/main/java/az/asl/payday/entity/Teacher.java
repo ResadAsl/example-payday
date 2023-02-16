@@ -1,10 +1,7 @@
 package az.asl.payday.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +9,15 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "teachers")
+@Table(name = "teacher")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Teachers {
+@Builder
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name", length = 100)
     private String name;
@@ -26,7 +25,6 @@ public class Teachers {
     @Column(name = "surname", length = 100)
     private String surname;
 
-    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade ={CascadeType.MERGE, CascadeType.PERSIST})
-    private List<Students> students = new ArrayList<>();
-
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<Lesson> lessons = new ArrayList<>();
 }
