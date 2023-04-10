@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface GroupService {
 
+    List<GroupDto> getAllPage(Integer page, Integer size);
+
     List<GroupDto> getAll();
 
     GroupDto getById(Long id);
@@ -15,5 +17,5 @@ public interface GroupService {
 
     GroupDto update(Long id, GroupDto dto);
 
-    GroupDto delete(Long id);
+    void delete(Long id);
 }

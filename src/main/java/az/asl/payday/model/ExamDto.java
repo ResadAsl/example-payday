@@ -1,15 +1,13 @@
 package az.asl.payday.model;
 
-import az.asl.payday.entity.Lesson;
-import az.asl.payday.entity.Place;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
@@ -19,11 +17,13 @@ public class ExamDto {
 
     private Long id;
 
-    private String examName;
-
     private LocalDateTime examDate;
 
-    private Place places;
+    @NotNull
+    private Long lessonId;
 
-    private List<Lesson> lessons = new ArrayList<>();
+    @NotNull
+    private Long placeId;
+
+
 }

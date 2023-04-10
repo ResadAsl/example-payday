@@ -7,15 +7,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/group")
 @RequiredArgsConstructor
 public class GroupController {
 
     private final GroupService service;
 
+//    @GetMapping
+//    public ResponseEntity<?> getAll(){
+//        return ResponseEntity.ok(service.getAll());
+//    }
+
     @GetMapping
-    public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<?> getPages(@RequestParam Integer page, @RequestParam Integer size){
+        return ResponseEntity.ok(service.getAllPage(page, size));
     }
 
     @GetMapping("/{id}")
@@ -34,7 +39,7 @@ public class GroupController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Long id){
-        return ResponseEntity.ok(service.delete(id));
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
     }
 }

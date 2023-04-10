@@ -33,7 +33,13 @@ public class Group {
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Student> students = new ArrayList<>();
 
-    public Group(Long id) {
-        this.id = id;
+    @OneToMany(mappedBy = "group", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<Exam> exams = new ArrayList<>();
+
+
+
+    public Group(Long groupId) {
+        this.id = groupId;
     }
+
 }

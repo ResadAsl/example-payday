@@ -1,18 +1,17 @@
 package az.asl.payday.model;
 
-import az.asl.payday.entity.Lesson;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 public class TeacherDto {
 
     private Long id;
@@ -20,6 +19,4 @@ public class TeacherDto {
     private String name;
 
     private String surname;
-
-    private List<Lesson> lessons = new ArrayList<>();
 }

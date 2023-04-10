@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "teacher")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+//@Builder
 public class Teacher {
 
     @Id
@@ -27,4 +27,8 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Lesson> lessons = new ArrayList<>();
+
+    public Teacher(Long id) {
+        this.id = id;
+    }
 }

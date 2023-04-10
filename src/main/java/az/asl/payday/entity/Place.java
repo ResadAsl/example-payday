@@ -27,4 +27,10 @@ public class Place {
 
     @OneToMany(mappedBy = "place", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Exam> exams = new ArrayList<>();
+
+
+    public Place(Long id) {
+        this.id = id;
+    }
+
 }

@@ -2,16 +2,27 @@ package az.asl.payday.mapper;
 
 import az.asl.payday.entity.Teacher;
 import az.asl.payday.model.TeacherDto;
-import org.mapstruct.Mapper;
+import org.mapstruct.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface TeacherMapper {
+public abstract class TeacherMapper {
 
-    List<TeacherDto> entityListToDto(List<Teacher> entities);
-    List<Teacher> dtoListToEntity(List<TeacherDto> dtos);
 
-    TeacherDto entityToDto(Teacher entity);
-    Teacher dtoToEntity(TeacherDto dto);
+    @Autowired
+    private  LessonMapper mapper;
+
+    public abstract List<TeacherDto> entityListToDto(List<Teacher> entities);
+    public abstract List<Teacher> dtoListToEntity(List<TeacherDto> dtos);
+
+
+    public abstract TeacherDto teacherEntityToDto(Teacher teacher);
+    public abstract Teacher teacherDtoToEntity(TeacherDto dto);
+
+
+    @BeanMapping(nullValuePropertyMappingStrategy =
+            NullValuePropertyMappingStrategy.IGNORE)
+    public abstract Teacher updateTeacher(@MappingTarget Teacher entity, TeacherDto dto);
 }

@@ -1,5 +1,6 @@
 package az.asl.payday.model;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -12,6 +13,6 @@ public class GroupDto {
 
     private Long id;
 
-    private String name;
 
+    private String name;
 }

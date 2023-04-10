@@ -1,8 +1,13 @@
 package az.asl.payday.entity;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,6 +15,7 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "student")
 @AllArgsConstructor
 @NoArgsConstructor
+@Transactional
 //@Builder
 public class Student {
 
@@ -32,4 +38,11 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
+
+    @OneToMany(mappedBy = "student", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<Price> prices = new ArrayList<>();
+
+    public Student(Long id) {
+       this.id = id;
+    }
 }

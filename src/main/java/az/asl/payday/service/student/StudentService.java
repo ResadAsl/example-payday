@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface StudentService {
 
+    List<StudentDto> getAllPage(Integer page, Integer size);
+
     List<StudentDto> getAll();
 
     StudentDto getById(Long id);
@@ -14,5 +16,7 @@ public interface StudentService {
 
     StudentDto update(Long id, StudentDto dto);
 
-    StudentDto delete(Long id);
+    void delete(Long id);
+
+    List<StudentDto> searchByName(String name);
 }

@@ -1,11 +1,13 @@
 package az.asl.payday.entity;
 
+import az.asl.payday.enums.ExamEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Getter
 @Setter
@@ -20,9 +22,6 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "exam_name")
-    private String examName;
-
     @Column(name = "exam_date")
     private LocalDateTime examDate;
 
@@ -30,6 +29,20 @@ public class Exam {
     @JoinColumn(name = "place_id")
     private Place place;
 
-    @OneToMany(mappedBy = "exam", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private List<Lesson> lessons = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "lesson_id")
+    private Lesson lesson;
+
+    @OneToOne(mappedBy = "exam")
+    private Price price;
+
+    private ExamEnum examEnum;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    public Exam(Long id) {
+        this.id = id;
+    }
 }

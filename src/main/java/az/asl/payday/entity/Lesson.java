@@ -22,8 +22,7 @@ public class Lesson {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "exam_id")
+    @OneToOne(mappedBy = "lesson")
     private Exam exam;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,4 +31,9 @@ public class Lesson {
 
     @ManyToMany(mappedBy = "lessons")
     private List<Group> groups = new ArrayList<>();
+
+
+    public Lesson(Long id) {
+        this.id = id;
+    }
 }

@@ -1,13 +1,12 @@
 package az.asl.payday.model;
 
-import az.asl.payday.entity.Exam;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Getter
 @Setter
@@ -20,6 +19,4 @@ public class PlaceDto {
     private String corpus;
 
     private Integer room;
-
-    private List<Exam> exams = new ArrayList<>();
 }
